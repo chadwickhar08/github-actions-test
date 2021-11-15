@@ -22,9 +22,12 @@ jobs:
         run: rsync -avz test/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/
       - name: SSH into server and echo file
         if: steps.deploy.outputs.exit_code == 0
-        run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-          cat ./home/test.txt
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: 22
+          script: cat /home/test.txt
       - name: echo a string
         run: echo "Hello World"
       - name: multiline script
