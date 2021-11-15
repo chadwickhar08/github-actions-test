@@ -31,7 +31,7 @@ jobs:
           script: |
             cd /home
             pkill -f node &
-            node app.js &
+            pm2 start app &
       - name: echo a string
         run: echo "Hello World"
       - name: multiline script
