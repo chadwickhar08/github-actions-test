@@ -30,9 +30,10 @@ jobs:
           port: 22
           script: |
             cd /home
-            pkill -f node
+            pkill -f node &
             node app.js &
             echo "Done"
+            curl http://localhost:8080
       - name: echo a string
         run: echo "Hello World"
       - name: multiline script
