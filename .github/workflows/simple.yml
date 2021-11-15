@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          script: cd /home ; node app.js &
+          script: cd /home ; node app.js & ; exit
 
       - name: echo a string
         run: echo "Hello World"
