@@ -28,7 +28,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          script: cat /home/test.txt
+          script: cd /home ; node app.js
+
       - name: echo a string
         run: echo "Hello World"
       - name: multiline script
