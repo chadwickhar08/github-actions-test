@@ -18,8 +18,10 @@ jobs:
       - name: Check path
         run: ls ${{github.workspace}}
       - name: Deploy with rsync
+        id: deploy
         run: rsync -avz test/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/
       - name: SSH into server and echo file
+        if: steps.deploy.outputs.exit_code == 0
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
           cat ./home/test.txt
