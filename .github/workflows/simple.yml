@@ -22,7 +22,7 @@ jobs:
       - name: SSH into server and echo file
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-          cat /home/test.txt
+          cat ./home/test.txt
       - name: echo a string
         run: echo "Hello World"
       - name: multiline script
