@@ -17,6 +17,16 @@ jobs:
         uses: actions/checkout@v2
       - name: Check path
         run: ls ${{github.workspace}}
+      - name: SSH into server and stop current process
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /home
+            pm2 stop app &
       - name: Deploy with rsync
         id: deploy
         run: rsync -avz test/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/
@@ -30,7 +40,7 @@ jobs:
           port: 22
           script: |
             cd /home
-            pm2 restart app &
+            pm2 start app &
       - name: echo a string
         run: echo "Hello World"
       - name: multiline script
