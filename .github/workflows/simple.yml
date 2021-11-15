@@ -16,7 +16,7 @@ jobs:
       - name: Check path
         run: ls
       - name: Deploy with rsync
-        run: rsync -avz ./test/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/ 
+        run: rsync -avz test/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/ 
       - name: echo a string
         run: echo "Hello World"
       - name: multiline script
