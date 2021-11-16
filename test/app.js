@@ -6,7 +6,7 @@ const port = 8080;
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('Danielle is the bestest person to have ever worn purple!');
+  res.end('NodeJS repo push test and server auto start using PM2. Revision 2.');
 });
 
 server.listen(port, hostname, () => {
